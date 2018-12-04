@@ -19,8 +19,8 @@ $connection->exec($sql);
 
 $sql = "CREATE TABLE `comments` (
   id int NOT NULL AUTO_INCREMENT,
-  `path_picture` text NOT NULL,
-  `username` text NOT NULL,
+  `pictureid` text NOT NULL,
+  `ownerid` text NOT NULL,
   `comment` text NOT NULL,
   PRIMARY KEY (id)
 )";
@@ -28,17 +28,16 @@ $connection->exec($sql);
 
 $sql = "CREATE TABLE `likes` (
   id int NOT NULL AUTO_INCREMENT,
-  `path_picture` text NOT NULL,
-  `username` text NOT NULL,
+  `pictureid` text NOT NULL,
+  `ownerid` text NOT NULL,
   PRIMARY KEY (id)
 )";
 $connection->exec($sql);
 
 $sql = "CREATE TABLE `pictures` (
   id int NOT NULL AUTO_INCREMENT,
-  `username` text NOT NULL,
+  `ownerid` text NOT NULL,
   `path` text NOT NULL,
-  `positions` int(11) NOT NULL,
   PRIMARY KEY (id)
 ) ";
 $connection->exec($sql);

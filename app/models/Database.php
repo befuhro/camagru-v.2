@@ -6,21 +6,21 @@ class Database
 
     public function __construct()
     {
-        $this->_dataBase = new PDO('mysql:host=mysql:3306;dbname=camagru;charset=utf8',
+        $this->_connection = new PDO('mysql:host=mysql:3306;dbname=camagru;charset=utf8',
             'root', 'rootpass',
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
 
     public function handleObject($query, $dataQuery)
     {
-        $request = $this->_dataBase->prepare($query);
+        $request = $this->_connection->prepare($query);
         $request->execute($dataQuery);
         $request->closeCursor();
     }
 
     public function getData($query, $dataQuery)
     {
-        $request = $this->_dataBase->prepare($query);
+        $request = $this->_connection->prepare($query);
         $request->execute($dataQuery);
         $data = $request->fetch();
         $request->closeCursor();
@@ -31,7 +31,7 @@ class Database
     public function getManyData($query, $dataQuery)
     {
         $array = [];
-        $request = $this->_dataBase->prepare($query);
+        $request = $this->_connection->prepare($query);
         $request->execute($dataQuery);
         while ($data = $request->fetch()) {
             array_push($array, $data);
@@ -39,6 +39,8 @@ class Database
         $request->closeCursor();
         return ($array);
     }
+
+
 }
 
 abstract class Model

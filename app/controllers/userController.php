@@ -76,6 +76,7 @@ function identify($username, $password)
             if ($data["confirmed"] == 1) {
                 $_SESSION["username"] = $username;
                 $_SESSION["mail"] = $data["mail"];
+                $_SESSION["id"] = $data["id"];
                 array_push($messages, "Your are now connected.");
             } else {
                 array_push($messages, "Your account has not been verified, check your email.");

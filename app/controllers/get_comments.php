@@ -15,4 +15,3 @@ while ($data = $request->fetch()) {
     array_push($comments, $data["comment"]);
 }
 echo json_encode($comments);
-?>

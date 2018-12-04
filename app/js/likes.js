@@ -5,16 +5,15 @@ function like_button(elt) {
     else if (elt.src.includes("miniature/full_like.png")) {
         elt.src = "miniature/empty_like.png";
     }
-
-    str = elt.parentNode.childNodes[1].src;
-    request = "str=" + str;
+    let id = elt.parentNode.childNodes[1].id;
+    let request = "id=" + id;
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200){
+        if (this.readyState === 4 && this.status === 200){
             alert(this.responseText);
         }
     };
-    xhr.open("POST", "handle_like.php", true);
+    xhr.open("POST", "/like_button");
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(request);
 }

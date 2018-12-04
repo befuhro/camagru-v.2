@@ -44,7 +44,7 @@ class User extends Model
 
     public function getIdInfo($username)
     {
-        $data = $this->_dataBase->getData("SELECT password, confirmed, mail FROM users WHERE username = :username", array(":username" => $username));
+        $data = $this->_dataBase->getData("SELECT id, password, confirmed, mail FROM users WHERE username = :username", array(":username" => $username));
         return ($data);
     }
 

@@ -1,3 +1,13 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>Camagru - Profile</title>
+</head>
+<?php include_once "views/header.php"; ?>
+<body>
+<section>
+
 <div id="main">
     <h1>Profile</h1>
     <div id="info">
@@ -12,3 +22,7 @@
         <a id="update_button" href="/update">Update informations</a>
     </div>
 </div>
+
+</section>
+</body>
+</html>

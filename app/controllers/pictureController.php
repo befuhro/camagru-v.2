@@ -5,8 +5,8 @@ function paginate()
     $dataBase = new Database();
     $picture = new Picture($dataBase);
     if (!empty($_SESSION["username"])) {
-        $like = new Likes($dataBase);
-        $likes = $like->getLikesPath($_SESSION["username"]);
+        $like = new Like($dataBase);
+        $likes = $like->getLikesPath($_SESSION["id"]);
     }
     if (!empty($_GET["page"])) {
         $pageNumber = $_GET["page"];
@@ -18,10 +18,10 @@ function paginate()
     foreach ($pictures as $item) {
         $page .= "<div class=\"pagine\">";
         $page .= "<h2>" . $item["username"] . "</h2>";
-        $page .= "<img src=\"" . $item["path"] . "\">";
+        $page .= "<img src=\"" . $item["path"] . "\" id=\"" . $item["id"] . "\">";
         if (isset($_SESSION["username"])) {
-            $page .= likeButton($likes, $item["path"]);
-            $page .= "<p>Comments</p>";
+            $page .= likeButton($likes, $item["id"]);
+            $page .= "<p>Comment</p>";
             $page .= "<div class=\"comments\"></div>";
             $page .= "<input type=\"text\" class=\"comment\">";
             $page .= "<button onclick=\"post_comment(this)\">post</button>";
@@ -31,60 +31,59 @@ function paginate()
         }
         $page .= "</div>";
     }
-    return($page);
+    return ($page);
 }
 
-function likeButton($likes, $path)
+function likeButton($likes, $pictureid)
 {
-    if (in_array($path, $likes))
-        return("<br><img class=\"like\" onclick=\"like_button(this)\" src=\"../miniature/full_like.png\">");
+    if (in_array($pictureid, $likes))
+        return ("<br><img class=\"like\" onclick=\"like_button(this)\" src=\"../miniature/full_like.png\">");
     else
-        return("<br><img class=\"like\" onclick=\"like_button(this)\" src=\"../miniature/empty_like.png\">");
+        return ("<br><img class=\"like\" onclick=\"like_button(this)\" src=\"../miniature/empty_like.png\">");
 }
 
-
-function deletePic() {
-    $dataBase = new Database();
-    $picture = new Picture($dataBase);
-    $array = explode('/', $_POST["path"]);
-    $path = $array[count($array) - 2] . '/' . $array[count($array) - 1];
-    $pictureOwner = $picture->getOwner($_POST["path"]);
-    if ($pictureOwner === $_SESSION["username"])
-    {
-        $picture->deletePicture( "../" . $path);
-        unlink($path);
+function addPicture()
+{
+    if (!empty($_SESSION["id"])) {
+        $dataBase = new Database();
+        $picture = new Picture($dataBase);
+        $img = $_POST["img"];
+        $icon = $_POST["icon"];
+        $img = str_replace("data:image/png;base64,", '', $img);
+        $icon = str_replace("data:image/png;base64,", '', $icon);
+        $img = str_replace(' ', '+', $img);
+        $icon = str_replace(' ', '+', $icon);
+        $imgdata = base64_decode($img);
+        $icondata = base64_decode($icon);
+        $src = imagecreatefromstring($imgdata);
+        $dst = imagecreatefromstring($icondata);
+        $path = "./public/picture" . $picture->addPicture($_SESSION["id"]) . ".jpeg";
+        imagecopy($src, $dst, 0, 0, 0, 0, 640, 480);
+        header('Content-type: image/jpeg');
+        imagejpeg($src, $path);
+        echo "Your picture has been uploaded.";
+    } else {
+        echo "Your are not authentificated.";
     }
 }
 
+function deletePicture()
+{
+    $dataBase = new Database();
+    $picture = new Picture($dataBase);
+    $path = "public/" . explode('/', $_POST["path"])[4];
+    $pictureOwner = $picture->getOwner($path);
+    if ($pictureOwner === $_SESSION["username"]) {
+        $picture->deletePicture($path);
+        if (file_exists($path)) {
+            unlink($path);
+            echo "Your picture has been deleted.";
+        }
+        else {
+            echo "This file does not exist anymore. Don't make too many request!";
+        }
 
-
-
-
-//
-//function pages_link()
-//{
-//    $nb_pages = number_pages();
-//    echo "<p>";
-//    if ($nb_pages > 0) {
-//        for ($i = 0; $i <= $nb_pages; $i++) {
-//            echo "<a href=\"/views/gallery.php?page=" . $i . "\"> $i </a>";
-//        }
-//    }
-//    echo "</p>";
-//}
-//
-//function number_pages()
-//{
-//    $nb = 0;
-//    $bdd = init();
-//    $request = $bdd->prepare("SELECT id FROM pictures");
-//    $request->execute();
-//    while ($data = $request->fetch())
-//        $nb++;
-//    if ($nb % 5 != 0)
-//        $nb = floor($nb / 5);
-//    else
-//        $nb = $nb / 5 - 1;
-//    return $nb;
-//}
-//
+    } else {
+        echo "You are not authentificated.";
+    }
+}

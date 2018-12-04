@@ -6,7 +6,7 @@
  * Time: 6:26 PM
  */
 
-class Comments
+class Comment
 {
 
 }
