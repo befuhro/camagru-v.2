@@ -5,11 +5,13 @@ class Route
     private $path;
     private $callable;
     private $matches;
+    public $restricted;
 
-    public function __construct($path, $callable)
+    public function __construct($restricted, $path, $callable)
     {
         $this->path = trim($path, '/');
         $this->callable = $callable;
+        $this->restricted = $restricted;
     }
 
     public function match($url)

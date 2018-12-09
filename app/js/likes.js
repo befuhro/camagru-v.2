@@ -1,13 +1,13 @@
 function like_button(elt) {
-    if (elt.src.includes("miniature/empty_like.png")) {
-        elt.src = "miniature/full_like.png";
+    if (elt.src.includes("assets/like_buttons/disliked.png")) {
+        elt.src = "/assets/like_buttons/liked.png";
     }
-    else if (elt.src.includes("miniature/full_like.png")) {
-        elt.src = "miniature/empty_like.png";
+    else if (elt.src.includes("assets/like_buttons/liked.png")) {
+        elt.src = "/assets/like_buttons/disliked.png";
     }
-    let id = elt.parentNode.childNodes[1].id;
-    let request = "id=" + id;
-    let xhr = new XMLHttpRequest();
+    var id = elt.parentNode.childNodes[2].id;
+    var request = "id=" + id;
+    var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200){
             alert(this.responseText);

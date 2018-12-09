@@ -9,9 +9,13 @@ class Like extends Model
 
     public function getLikesPath($ownerId)
     {
+        $likes = array();
         $data = $this->_dataBase->getManyData("SELECT pictureid FROM likes WHERE ownerid = :ownerId",
             array(":ownerId" => $ownerId));
-        return ($data);
+        foreach ($data as $like) {
+            array_push($likes, $like["pictureid"]);
+        }
+        return ($likes);
     }
 
     public function isLiked($pictureId, $ownerId)

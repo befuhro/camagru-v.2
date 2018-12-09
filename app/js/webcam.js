@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let file = document.createElement("input");
                 let background = new Image();
                 background.id = "output";
-                background.src = "/miniature/white.png";
+                background.src = "/assets/white.png";
                 file.setAttribute("type", "file");
                 file.setAttribute("accept", "image/*");
                 file.id = "uploaded_file";
@@ -50,19 +50,21 @@ function importImage() {
     let file = document.getElementById("uploaded_file");
     let input = file.files[0];
     let reader = new FileReader();
-    let img= new Image();
+    let img = new Image();
+    let tmp = new Image();
 
     if (input == null) {
         alert("You must upload a picture before making a collage");
         return;
     }
     reader.onload = function (e) {
+        tmp.src = e.target.result;
         let canvas = document.createElement("canvas");
         let context = canvas.getContext("2d");
-        img.src = e.target.result;
         canvas.width = 640;
         canvas.height = 480;
-        context.drawImage(img, 0, 0, 640, 480);
+        context.fillRect(0, 0, 640, 480);
+        context.drawImage(tmp, 0, 0, 640, 480);
         document.getElementById("output").src = canvas.toDataURL("image/png");
     };
     reader.readAsDataURL(input);
@@ -81,7 +83,7 @@ function takePicture() {
     let icon = new Image();
 
     if (cpy == null) {
-        alert("You must choose a miniature before taking a picture");
+        alert("You must choose a miniatures before taking a picture");
         return;
     }
     aside.append(div);

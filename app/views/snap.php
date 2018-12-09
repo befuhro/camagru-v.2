@@ -23,12 +23,12 @@
             <div id="buttons"></div>
 
             <div id="icons">
-                <img src="/miniature/big-brain.png" class="icon" onclick="addIcon(this)">
-                <img src="/miniature/dinosaur.png" class="icon" onclick="addIcon(this)">
-                <img src="/miniature/dog.png" class="icon" onclick="addIcon(this)">
-                <img src="/miniature/laughing-meme.png" class="icon" onclick="addIcon(this)">
-                <img src="/miniature/thug-life.png" class="icon" onclick="addIcon(this)">
-                <img src="/miniature/salt.png" class="icon" onclick="addIcon(this)">
+                <img src="/assets/miniatures/big-brain.png" class="icon" onclick="addIcon(this)">
+                <img src="/assets/miniatures/dinosaur.png" class="icon" onclick="addIcon(this)">
+                <img src="/assets/miniatures/dog.png" class="icon" onclick="addIcon(this)">
+                <img src="/assets/miniatures/laughing-meme.png" class="icon" onclick="addIcon(this)">
+                <img src="/assets/miniatures/thug-life.png" class="icon" onclick="addIcon(this)">
+                <img src="/assets/miniatures/salt.png" class="icon" onclick="addIcon(this)">
             </div>
 
         </div>

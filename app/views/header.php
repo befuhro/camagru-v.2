@@ -1,3 +1,5 @@
+<script>function logout() { alert("You are now logged out.");}</script>
+
 <header>
     <h1>Camagru</h1>
     <div id="center">
@@ -10,7 +12,7 @@
 
     <div id="side">
         <?php if (isset($_SESSION["username"]))
-            echo "<a href='/logout'>logout</a>";
+            echo "<a onclick='logout()' href='/logout'>logout</a>";
         else {
             echo "<a href=\"/signin\">signin</a>";
             echo "<a href=\"/signup\">signup</a>";

@@ -17,18 +17,26 @@ class Picture extends Model
         return ($data);
     }
 
-    public function getOwner($pictureId)
+    public function getOwner($pictureID)
     {
-        $ownerid = $this->_dataBase->getData("SELECT ownerid FROM pictures WHERE id = :id", array(":id" => $pictureId))["ownerid"];
-        $username = $this->_dataBase->getData("SELECT username FROM users WHERE id = :id", array(":id" => $ownerid))["username"];
+        $ownerID = $this->_dataBase->getData("SELECT ownerid FROM pictures WHERE id = :id", array(":id" => $pictureID))["ownerid"];
+        $username = $this->_dataBase->getData("SELECT username FROM users WHERE id = :id", array(":id" => $ownerID))["username"];
         return ($username);
     }
 
-    public function deletePicture($path)
+
+    public function getOwnerAndPath($pictureID)
     {
-        $this->_dataBase->handleObject("DELETE FROM pictures WHERE path = :path", array(":path" => $path));
-        $this->_dataBase->handleObject("DELETE FROM likes WHERE path_picture = :path", array(":path" => $path));
-        $this->_dataBase->handleObject("DELETE FROM comments WHERE path_picture = :path", array(":path" => $path));
+        $data = $this->_dataBase->getData("SELECT ownerid, path FROM pictures WHERE id = :id", array(":id" => $pictureID));
+        $data["owner"] = $this->_dataBase->getData("SELECT username FROM users WHERE id = :id", array(":id" => $data["ownerid"]))["username"];
+        return ($data);
+    }
+
+    public function deletePicture($pictureID)
+    {
+        $this->_dataBase->handleObject("DELETE FROM pictures WHERE id = :id", array(":id" => $pictureID));
+        $this->_dataBase->handleObject("DELETE FROM likes WHERE pictureid = :id", array(":id" => $pictureID));
+        $this->_dataBase->handleObject("DELETE FROM comments WHERE pictureid = :id", array(":id" => $pictureID));
     }
 
     public function addPicture($ownerid)
@@ -38,6 +46,4 @@ class Picture extends Model
             array(":ownerid" => $ownerid, ":path" => "public/picture" . ++$pictureNb . ".jpeg"));
         return ($pictureNb);
     }
-
-
 }
