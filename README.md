@@ -22,8 +22,7 @@ php setup.php
 Une fois le deploiement effectue, vous pourrez acceder en localhost:  
 * au site via le port 8008  
 * a phpmyadmin via le port 8080  
-* a la base de donnee via port 3306
-le mot de passe `root` est `rootpass` 
+* a la base de donnee via port 3306, le mot de passe `root` est `rootpass` 
  
 ## Notions abordees
 * Creation d'une page web  
