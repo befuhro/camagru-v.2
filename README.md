@@ -1,4 +1,6 @@
 # Camagru
+
+## Objectifs
 Camagru est un projet d'initiation au web realise sans aucun framework    
 Ce site permet de personnaliser des photos en y superposant des miniatures a la maniere d'un photo collage    
 Un espace utilisateur est a mettre en place avec certaines consignes    
@@ -17,5 +19,22 @@ php setup.php
 ```
 
 ## Utilisation
-Une fois le deploiement effectue, vous pourrez acceder en localhost au site via le port 8008 et a phpmyadmin via le port 8080  
-La base de donnee est accessible sur le port 3306, le mot de passe `root` est `rootpass`  
+Une fois le deploiement effectue, vous pourrez acceder en localhost:  
+* au site via le port 8008  
+* a phpmyadmin via le port 8080  
+* a la base de donnee via port 3306
+le mot de passe `root` est `rootpass` 
+ 
+## Notions abordees
+* Creation d'une page web  
+* Programmation orientee objet    
+* Modele MVC  
+* Requetes HTTP
+* Manipulation des DOM  
+* Creation d'un mini-routeur
+
+## Languages utilises
+* HTML
+* CSS
+* Javascript
+* PHP
