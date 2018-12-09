@@ -25,15 +25,17 @@ Une fois le deploiement effectue, vous pourrez acceder en localhost:
 * a la base de donnee via port 3306, le mot de passe `root` est `rootpass` 
  
 ## Notions abordees
-* Creation d'une page web  
+* Creation d'une page web 
+* Manipulation des DOM  
+* Requetes HTTP
 * Programmation orientee objet    
 * Modele MVC  
-* Requetes HTTP
-* Manipulation des DOM  
 * Creation d'un mini-routeur
+* Requetes SQL
 
 ## Languages utilises
 * HTML
 * CSS
 * Javascript
 * PHP
+* SQL
