@@ -1,6 +1,6 @@
 # Camagru
 
-## Objectifs
+## Description
 Camagru est un projet d'initiation au web realise sans aucun framework    
 Ce site permet de personnaliser des photos en y superposant des miniatures a la maniere d'un photo collage    
 Un espace utilisateur est a mettre en place avec certaines consignes    
