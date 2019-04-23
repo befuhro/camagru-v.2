@@ -16,7 +16,7 @@ function signup()
         $user->signup($username, $mail, $hash, $key);
         sendConfirmationMail($username, $mail, $key);
         array_push($messages, "Your registation has been taken in consideration.");
-        array_push($messages, "A confirmation email has been sent.");
+#        array_push($messages, "A confirmation email has been sent.");
         $response["success"] = true;
     } else {
         $response["success"] = false;

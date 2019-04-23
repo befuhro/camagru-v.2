@@ -56,8 +56,8 @@ class User extends Model
 
     public function signup($username, $mail, $hash, $confirmationKey)
     {
-        $this->_dataBase->handleObject("INSERT INTO users(username, mail, password, random_key)VALUES(:username, :mail, :password, :key)",
-            array(":username" => $username, ":mail" => $mail, ":password" => $hash, ":key" => $confirmationKey));
+        $this->_dataBase->handleObject("INSERT INTO users(username, mail, password, random_key, confirmed)VALUES(:username, :mail, :password, :key, :confirmed)",
+            array(":username" => $username, ":mail" => $mail, ":password" => $hash, ":key" => $confirmationKey, ":confirmed" => 1));
     }
 
     public function confirmAccount($username)
