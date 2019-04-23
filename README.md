@@ -17,6 +17,7 @@ Dans le repertoire config, entrez la commande
 ```
 php setup.php
 ```
+Il pourra aussi etre necessaire de changer les droits du dossier public pour l'upload des images.
 
 ## Utilisation
 Une fois le deploiement effectue, vous pourrez acceder en localhost:  
