@@ -42,30 +42,35 @@ function addIcon(e) {
     img.src = e.src;
     canvas.width = 640;
     canvas.height = 480;
-    context.drawImage(img, 150, 150, img.width, img.height);
+    context.drawImage(e, 150, 150, img.width, img.height);
     img.src = canvas.toDataURL("image/png");
 }
+
+const drawImage = (context, image, width, height) => (new Promise(resolve => {
+    context.drawImage(image, 0, 0, width, height);
+    resolve();
+}));
 
 function importImage() {
     let file = document.getElementById("uploaded_file");
     let input = file.files[0];
     let reader = new FileReader();
-    let img = new Image();
-    let tmp = new Image();
 
     if (input == null) {
         alert("You must upload a picture before making a collage");
         return;
     }
-    reader.onload = function (e) {
-        tmp.src = e.target.result;
+    reader.onloadend = function (e) {
+        const output = document.getElementById("output");
+        let image = new Image();
         let canvas = document.createElement("canvas");
         let context = canvas.getContext("2d");
+        image.src = e.target.result;
         canvas.width = 640;
         canvas.height = 480;
-        context.fillRect(0, 0, 640, 480);
-        context.drawImage(tmp, 0, 0, 640, 480);
-        document.getElementById("output").src = canvas.toDataURL("image/png");
+        drawImage(context, image, 640, 480).then(() => {
+            output.src = canvas.toDataURL("image/png");
+        });
     };
     reader.readAsDataURL(input);
 }
