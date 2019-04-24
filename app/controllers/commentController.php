@@ -26,15 +26,16 @@ function paginateComments($pictureID)
         $dataBase = new Database();
         $users = new User($dataBase);
         $comments = getComments($pictureID, $dataBase);
-        $page = "<p>Comments</p>";
+        $page = "<h2 style='text-align: left'>Comments</h2>";
         $page .= "<div class='comments'>";
         foreach ($comments as $comment) {
+            $page .= "<hr class='line_comments'/>";
             $page .= "<p><b>" . $users->getUsername($comment["ownerid"]) . "</b><br>";
             $page .= $comment["comment"] . "</p>";
         }
         $page .= "</div>";
-        $page .= "<input type='text' class='comment'>";
-        $page .= "<button onclick='post_comment(this)'>post</button>";
+        $page .= "<input type='text' class='comment_input'>";
+        $page .= "<button class='comment_button' onclick='post_comment(this)'>post</button>";
         return ($page);
     } else {
         return ("");

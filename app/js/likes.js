@@ -5,7 +5,7 @@ function like_button(elt) {
     else if (elt.src.includes("assets/like_buttons/liked.png")) {
         elt.src = "/assets/like_buttons/disliked.png";
     }
-    var id = elt.parentNode.childNodes[2].id;
+    var id = elt.parentNode.parentNode.id;
     var request = "id=" + id;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {

@@ -1,12 +1,12 @@
-function delete_picture(elt) {
-    var pictureID = elt.parentElement.childNodes[1].id;
+function deletePicture(elt) {
+    var pictureID = elt.parentNode.parentNode.id;
     var request = "pictureID=" + pictureID;
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             alert(this.responseText);
             console.log(this.responseText);
-            elt.parentElement.remove();
+            elt.parentNode.parentNode.remove();
         }
     };
     xhr.open("POST", "/delete_picture");

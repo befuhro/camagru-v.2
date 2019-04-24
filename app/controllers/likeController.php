@@ -22,9 +22,9 @@ function likeButton($likes, $pictureID)
 {
     if (isset($_SESSION["username"])) {
         if (in_array($pictureID, $likes)) {
-            return ("<br><img class='like' id='on' onclick='like_button(this)' src='/assets/like_buttons/liked.png'>");
+            return ("<img class='like' id='on' onclick='like_button(this)' src='/assets/like_buttons/liked.png'>");
         } else {
-            return ("<br><img class='like' id='off' onclick='like_button(this)' src='/assets/like_buttons/disliked.png'>");
+            return ("<img class='like' id='off' onclick='like_button(this)' src='/assets/like_buttons/disliked.png'>");
         }
     }
 }

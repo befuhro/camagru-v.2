@@ -1,7 +1,7 @@
 function post_comment(elt) {
     if (elt.previousSibling.value !== '') {
         var comment = elt.previousSibling.value;
-        var pictureID = elt.parentElement.childNodes[1].id;
+        var pictureID = elt.parentElement.id;
         var request = "comment=" + comment + "&pictureID=" + pictureID;
         var p = document.createElement("p");
         var div = elt.previousSibling.previousSibling;

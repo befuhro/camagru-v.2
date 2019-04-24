@@ -12,15 +12,15 @@ function paginate()
     }
     $pictures = $picture->fetchPictures($pageNumber * 4, 4);
     foreach ($pictures as $item) {
-        $page .= "<div class=\"pagine\">";
-        $page .= "<h2>" . $item["id"] . "</h2>";
+        $page .= "<div class=\"pagine\" id=\"" . $item["id"] . "\">";
         $page .= "<h2>" . $item["username"] . "</h2>";
         $page .= "<img src=\"" . $item["path"] . "\" id=\"" . $item["id"] . "\">";
+
         if (!empty($_SESSION["username"])) {
-            $page .= likeButton($likes, $item["id"]);
+            $page .= "<div class='like_and_delete_buttons'>" . likeButton($likes, $item["id"]);
+            $page .= getDeleteButton($item["username"]) . "</div>";
         }
         $page .= paginateComments($item["id"]);
-        $page .= getDeleteButton($item["username"]);
         $page .= "</div>";
     }
     echo $page;
@@ -28,7 +28,7 @@ function paginate()
 
 function getDeleteButton($ownerName) {
     if (isset($_SESSION["username"]) && $_SESSION["username"] === $ownerName) {
-        return ("<br><br><button onclick=\"delete_picture(this)\">delete picture</button>");
+        return ("<button class='delete_button' onclick=\"deletePicture(this)\">delete picture</button>");
     }
 }
 
